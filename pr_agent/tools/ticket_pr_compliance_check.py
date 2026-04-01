@@ -17,12 +17,15 @@ GITHUB_TICKET_PATTERN = re.compile(
 # Option A: issue number at start of branch or after /, followed by - or end (e.g. feature/1-test-issue, 123-fix)
 BRANCH_ISSUE_PATTERN = re.compile(r"(?:^|/)(\d{1,6})(?=-|$)")
 
+
 def extract_openproject_tickets_from_text(text):
     if not text:
         return []
     tickets = set()
-    # Match OP<TaskID> pattern, e.g. OP13709
-    matches = re.findall(r"OP(\d+)", text, re.IGNORECASE)
+    # text = "Update records for OP#456, OP#789, and occasionally OP#1011"
+    # Output: ['456', '789', '1011']
+    pattern = r"OP#(\d+)"
+    matches = re.findall(pattern, text, re.IGNORECASE)
     for match in matches:
         tickets.add(match)
     return list(tickets)
