@@ -4,7 +4,11 @@ import traceback
 from pr_agent.config_loader import get_settings
 from pr_agent.git_providers import GithubProvider
 from pr_agent.git_providers import AzureDevopsProvider
+from pr_agent.git_providers import GitLabProvider
 from pr_agent.log import get_logger
+
+import os
+import requests
 
 # Compile the regex pattern once, outside the function
 GITHUB_TICKET_PATTERN = re.compile(
@@ -12,6 +16,57 @@ GITHUB_TICKET_PATTERN = re.compile(
 )
 # Option A: issue number at start of branch or after /, followed by - or end (e.g. feature/1-test-issue, 123-fix)
 BRANCH_ISSUE_PATTERN = re.compile(r"(?:^|/)(\d{1,6})(?=-|$)")
+
+def extract_openproject_tickets_from_text(text):
+    if not text:
+        return []
+    tickets = set()
+    # Match OP<TaskID> pattern, e.g. OP13709
+    matches = re.findall(r"OP(\d+)", text, re.IGNORECASE)
+    for match in matches:
+        tickets.add(match)
+    return list(tickets)
+
+def fetch_openproject_ticket(task_id):
+    MAX_TICKET_CHARACTERS = 10000
+    op_url = get_settings().get("config.openproject_url", os.getenv("OPENPROJECT_URL", "https://project.idlogiq.com"))
+    op_token = os.getenv("OPENPROJECT_TOKEN")
+    
+    if not op_token:
+        get_logger().error("OPENPROJECT_TOKEN environment variable is not set")
+        return None
+        
+    try:
+        url = f"{op_url.rstrip('/')}/api/v3/work_packages/{task_id}"
+        response = requests.get(url, auth=('apikey', op_token), headers={"Content-Type": "application/json"})
+        response.raise_for_status()
+        data = response.json()
+        
+        body_str = data.get('description', {}).get('raw', '')
+        if not body_str:
+            body_str = data.get('description', {}).get('html', '')
+            
+        if len(body_str) > MAX_TICKET_CHARACTERS:
+            body_str = body_str[:MAX_TICKET_CHARACTERS] + "..."
+            
+        labels = []
+        # Try to extract type or status as labels if possible
+        if 'type' in data and '_links' in data:
+            if 'type' in data['_links']:
+                labels.append(data['_links']['type'].get('title', 'Work Package'))
+        if '_links' in data and 'status' in data['_links']:
+            labels.append(data['_links']['status'].get('title', 'Unknown Status'))
+
+        return {
+            "ticket_id": str(task_id),
+            "ticket_url": f"{op_url.rstrip('/')}/work_packages/{task_id}",
+            "title": data.get("subject", f"OP-{task_id}"),
+            "body": body_str,
+            "labels": ", ".join(labels),
+        }
+    except Exception as e:
+        get_logger().error(f"Error fetching OpenProject ticket {task_id}: {e}", artifact={"traceback": traceback.format_exc()})
+        return None
 
 def find_jira_tickets(text):
     # Regular expression patterns for JIRA tickets
@@ -214,6 +269,35 @@ async def extract_tickets(git_provider):
                         f"Error processing Azure DevOps ticket: {e}",
                         artifact={"traceback": traceback.format_exc()},
                     )
+            return tickets_content
+
+        elif isinstance(git_provider, GitLabProvider):
+            user_description = git_provider.get_pr_description_full() or ""
+            branch_name = git_provider.get_pr_branch() or ""
+            title = git_provider.get_title() or ""
+            
+            # Extract OP tickets
+            desc_tickets = extract_openproject_tickets_from_text(user_description)
+            title_tickets = extract_openproject_tickets_from_text(title)
+            branch_tickets = extract_openproject_tickets_from_text(branch_name)
+            
+            seen = set()
+            merged_tickets = []
+            for ticket in title_tickets + branch_tickets + desc_tickets:
+                if ticket not in seen:
+                    seen.add(ticket)
+                    merged_tickets.append(ticket)
+            
+            if len(merged_tickets) > 3:
+                get_logger().info(f"Too many OP tickets found: {len(merged_tickets)}")
+                merged_tickets = merged_tickets[:3]
+                
+            tickets_content = []
+            for ticket_id in merged_tickets:
+                ticket_data = fetch_openproject_ticket(ticket_id)
+                if ticket_data:
+                    tickets_content.append(ticket_data)
+            
             return tickets_content
 
     except Exception as e:
