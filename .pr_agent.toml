@@ -2,6 +2,7 @@
 enable_review_labels_effort = true
 enable_auto_approval = true
 require_ticket_analysis_review = true
+require_score_review = true
 extra_instructions = """
 In addition to the standard review, perform a deep-dive analysis on the following three pillars:
 
