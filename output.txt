@@ -1,0 +1,211 @@
+2026-04-03 14:11:35.116 | WARNING  | pr_agent.custom_merge_loader:load:63 - Settings file not found: /Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/settings/.secrets.toml. Skipping it.
+2026-04-03 14:11:35.116 | WARNING  | pr_agent.custom_merge_loader:load:63 - Settings file not found: /Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/settings_prod/.secrets.toml. Skipping it.
+[32m2026-04-03 14:11:45.536[0m | [1mINFO    [0m | [36mpr_agent.git_providers.git_provider[0m:[36mget_main_pr_language[0m:[36m414[0m - [1mNo languages detected[0m
+[32m2026-04-03 14:11:52.918[0m | [1mINFO    [0m | [36mpr_agent.git_providers.gitlab_provider[0m:[36mget_diff_files[0m:[36m474[0m - [1mFiltered out files with invalid extensions: ['.gitignore', 'package-lock.json'][0m
+[32m2026-04-03 14:11:53.364[0m | [1mINFO    [0m | [36mpr_agent.tools.pr_reviewer[0m:[36mrun[0m:[36m134[0m - [1mReviewing PR: https://scm.idlogiq.com/ID/testqodoproject/-/merge_requests/6 ...[0m
+[32m2026-04-03 14:11:54.332[0m | [1mINFO    [0m | [36mpr_agent.tools.ticket_pr_compliance_check[0m:[36mextract_and_cache_pr_tickets[0m:[36m329[0m - [1mExtracted tickets and sub-issues from PR description[0m
+[32m2026-04-03 14:11:55.825[0m | [1mINFO    [0m | [36mpr_agent.algo.pr_processing[0m:[36mget_pr_diff[0m:[36m63[0m - [1mPR main language: Other[0m
+[32m2026-04-03 14:11:55.829[0m | [1mINFO    [0m | [36mpr_agent.algo.pr_processing[0m:[36mget_pr_diff[0m:[36m74[0m - [1mTokens: 2204, total tokens under limit: 32000, returning full diff.[0m
+[32m2026-04-03 14:11:55.838[0m | [1mINFO    [0m | [36mpr_agent.algo.ai_handlers.litellm_ai_handler[0m:[36mchat_completion[0m:[36m314[0m - [1mUsing reasoning_effort='medium' for GPT-5 model[0m
+[32m2026-04-03 14:11:55.856[0m | [31m[1mERROR   [0m | [36mpr_agent.agent.pr_agent[0m:[36mhandle_request[0m:[36m125[0m - [31m[1mFailed to process the command.[0m
+[33m[1mTraceback (most recent call last):[0m
+
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+
+  File "[32m/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/[0m[32m[1mcli.py[0m", line [33m105[0m, in [35m<module>[0m
+    [1mrun[0m[1m([0m[1m)[0m
+    [36m└ [0m[36m[1m<function run at 0x111b559e0>[0m
+
+  File "[32m/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/[0m[32m[1mcli.py[0m", line [33m99[0m, in [35mrun[0m
+    [1mresult[0m [35m[1m=[0m [1masyncio[0m[35m[1m.[0m[1mrun[0m[1m([0m[1minner[0m[1m([0m[1m)[0m[1m)[0m
+    [36m         │       │   └ [0m[36m[1m<function run.<locals>.inner at 0x115fc3f60>[0m
+    [36m         │       └ [0m[36m[1m<function run at 0x107caef20>[0m
+    [36m         └ [0m[36m[1m<module 'asyncio' from '/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asy...[0m
+
+  File "[32m/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/[0m[32m[1mrunners.py[0m", line [33m195[0m, in [35mrun[0m
+    [35m[1mreturn[0m [1mrunner[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mmain[0m[1m)[0m
+    [36m       │      │   └ [0m[36m[1m<coroutine object run.<locals>.inner at 0x115f3e680>[0m
+    [36m       │      └ [0m[36m[1m<function Runner.run at 0x107d33420>[0m
+    [36m       └ [0m[36m[1m<asyncio.runners.Runner object at 0x1149fcc80>[0m
+
+  File "[32m/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/[0m[32m[1mrunners.py[0m", line [33m118[0m, in [35mrun[0m
+    [35m[1mreturn[0m [1mself[0m[35m[1m.[0m[1m_loop[0m[35m[1m.[0m[1mrun_until_complete[0m[1m([0m[1mtask[0m[1m)[0m
+    [36m       │    │     │                  └ [0m[36m[1m<Task cancelling name='Task-1' coro=<run.<locals>.inner() running at /Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-age...[0m
+    [36m       │    │     └ [0m[36m[1m<function BaseEventLoop.run_until_complete at 0x107d30f40>[0m
+    [36m       │    └ [0m[36m[1m<_UnixSelectorEventLoop running=True closed=False debug=False>[0m
+    [36m       └ [0m[36m[1m<asyncio.runners.Runner object at 0x1149fcc80>[0m
+
+  File "[32m/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/[0m[32m[1mbase_events.py[0m", line [33m678[0m, in [35mrun_until_complete[0m
+    [1mself[0m[35m[1m.[0m[1mrun_forever[0m[1m([0m[1m)[0m
+    [36m│    └ [0m[36m[1m<function BaseEventLoop.run_forever at 0x107d30ea0>[0m
+    [36m└ [0m[36m[1m<_UnixSelectorEventLoop running=True closed=False debug=False>[0m
+
+  File "[32m/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/[0m[32m[1mbase_events.py[0m", line [33m645[0m, in [35mrun_forever[0m
+    [1mself[0m[35m[1m.[0m[1m_run_once[0m[1m([0m[1m)[0m
+    [36m│    └ [0m[36m[1m<function BaseEventLoop._run_once at 0x107d32ca0>[0m
+    [36m└ [0m[36m[1m<_UnixSelectorEventLoop running=True closed=False debug=False>[0m
+
+  File "[32m/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/[0m[32m[1mbase_events.py[0m", line [33m1999[0m, in [35m_run_once[0m
+    [1mhandle[0m[35m[1m.[0m[1m_run[0m[1m([0m[1m)[0m
+    [36m│      └ [0m[36m[1m<function Handle._run at 0x107c67ec0>[0m
+    [36m└ [0m[36m[1m<Handle Task.task_wakeup(<Future cancelled>)>[0m
+
+  File "[32m/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/[0m[32m[1mevents.py[0m", line [33m88[0m, in [35m_run[0m
+    [1mself[0m[35m[1m.[0m[1m_context[0m[35m[1m.[0m[1mrun[0m[1m([0m[1mself[0m[35m[1m.[0m[1m_callback[0m[1m,[0m [35m[1m*[0m[1mself[0m[35m[1m.[0m[1m_args[0m[1m)[0m
+    [36m│    │            │    │           │    └ [0m[36m[1m<member '_args' of 'Handle' objects>[0m
+    [36m│    │            │    │           └ [0m[36m[1m<Handle Task.task_wakeup(<Future cancelled>)>[0m
+    [36m│    │            │    └ [0m[36m[1m<member '_callback' of 'Handle' objects>[0m
+    [36m│    │            └ [0m[36m[1m<Handle Task.task_wakeup(<Future cancelled>)>[0m
+    [36m│    └ [0m[36m[1m<member '_context' of 'Handle' objects>[0m
+    [36m└ [0m[36m[1m<Handle Task.task_wakeup(<Future cancelled>)>[0m
+
+> File "[32m/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/agent/[0m[32m[1mpr_agent.py[0m", line [33m123[0m, in [35mhandle_request[0m
+    [35m[1mreturn[0m [35m[1mawait[0m [1mself[0m[35m[1m.[0m[1m_handle_request[0m[1m([0m[1mpr_url[0m[1m,[0m [1mrequest[0m[1m,[0m [1mnotify[0m[1m)[0m
+    [36m             │    │               │       │        └ [0m[36m[1mNone[0m
+    [36m             │    │               │       └ [0m[36m[1m['review'][0m
+    [36m             │    │               └ [0m[36m[1m'https://scm.idlogiq.com/ID/testqodoproject/-/merge_requests/6'[0m
+    [36m             │    └ [0m[36m[1m<function PRAgent._handle_request at 0x111b558a0>[0m
+    [36m             └ [0m[36m[1m<pr_agent.agent.pr_agent.PRAgent object at 0x114a73410>[0m
+
+  File "[32m/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/agent/[0m[32m[1mpr_agent.py[0m", line [33m116[0m, in [35m_handle_request[0m
+    [35m[1mawait[0m [1mcommand2class[0m[1m[[0m[1maction[0m[1m][0m[1m([0m[1mpr_url[0m[1m,[0m [1mai_handler[0m[35m[1m=[0m[1mself[0m[35m[1m.[0m[1mai_handler[0m[1m,[0m [1margs[0m[35m[1m=[0m[1margs[0m[1m)[0m[35m[1m.[0m[1mrun[0m[1m([0m[1m)[0m
+    [36m      │             │       │                  │    │                └ [0m[36m[1m[][0m
+    [36m      │             │       │                  │    └ [0m[36m[1m<class 'pr_agent.algo.ai_handlers.litellm_ai_handler.LiteLLMAIHandler'>[0m
+    [36m      │             │       │                  └ [0m[36m[1m<pr_agent.agent.pr_agent.PRAgent object at 0x114a73410>[0m
+    [36m      │             │       └ [0m[36m[1m'https://scm.idlogiq.com/ID/testqodoproject/-/merge_requests/6'[0m
+    [36m      │             └ [0m[36m[1m'review'[0m
+    [36m      └ [0m[36m[1m{'auto_review': <class 'pr_agent.tools.pr_reviewer.PRReviewer'>, 'answer': <class 'pr_agent.tools.pr_reviewer.PRReviewer'>, '...[0m
+
+  File "[32m/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/tools/[0m[32m[1mpr_reviewer.py[0m", line [33m155[0m, in [35mrun[0m
+    [35m[1mawait[0m [1mretry_with_fallback_models[0m[1m([0m[1mself[0m[35m[1m.[0m[1m_prepare_prediction[0m[1m,[0m [1mmodel_type[0m[35m[1m=[0m[1mModelType[0m[35m[1m.[0m[1mREGULAR[0m[1m)[0m
+    [36m      │                          │    │                               │         └ [0m[36m[1m<ModelType.REGULAR: 'regular'>[0m
+    [36m      │                          │    │                               └ [0m[36m[1m<enum 'ModelType'>[0m
+    [36m      │                          │    └ [0m[36m[1m<function PRReviewer._prepare_prediction at 0x115fc3560>[0m
+    [36m      │                          └ [0m[36m[1m<pr_agent.tools.pr_reviewer.PRReviewer object at 0x115f36450>[0m
+    [36m      └ [0m[36m[1m<function retry_with_fallback_models at 0x115f9cea0>[0m
+
+  File "[32m/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/algo/[0m[32m[1mpr_processing.py[0m", line [33m331[0m, in [35mretry_with_fallback_models[0m
+    [35m[1mreturn[0m [35m[1mawait[0m [1mf[0m[1m([0m[1mmodel[0m[1m)[0m
+    [36m             │ └ [0m[36m[1m'gpt-5.4-mini'[0m
+    [36m             └ [0m[36m[1m<bound method PRReviewer._prepare_prediction of <pr_agent.tools.pr_reviewer.PRReviewer object at 0x115f36450>>[0m
+
+  File "[32m/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/tools/[0m[32m[1mpr_reviewer.py[0m", line [33m198[0m, in [35m_prepare_prediction[0m
+    [1mself[0m[35m[1m.[0m[1mprediction[0m [35m[1m=[0m [35m[1mawait[0m [1mself[0m[35m[1m.[0m[1m_get_prediction[0m[1m([0m[1mmodel[0m[1m)[0m
+    [36m│    │                  │    │               └ [0m[36m[1m'gpt-5.4-mini'[0m
+    [36m│    │                  │    └ [0m[36m[1m<function PRReviewer._get_prediction at 0x115fc3600>[0m
+    [36m│    │                  └ [0m[36m[1m<pr_agent.tools.pr_reviewer.PRReviewer object at 0x115f36450>[0m
+    [36m│    └ [0m[36m[1mNone[0m
+    [36m└ [0m[36m[1m<pr_agent.tools.pr_reviewer.PRReviewer object at 0x115f36450>[0m
+
+  File "[32m/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/tools/[0m[32m[1mpr_reviewer.py[0m", line [33m220[0m, in [35m_get_prediction[0m
+    [1mresponse[0m[1m,[0m [1mfinish_reason[0m [35m[1m=[0m [35m[1mawait[0m [1mself[0m[35m[1m.[0m[1mai_handler[0m[35m[1m.[0m[1mchat_completion[0m[1m([0m
+    [36m                                │    │          └ [0m[36m[1m<function LiteLLMAIHandler.chat_completion at 0x114af3600>[0m
+    [36m                                │    └ [0m[36m[1m<pr_agent.algo.ai_handlers.litellm_ai_handler.LiteLLMAIHandler object at 0x113ed7a40>[0m
+    [36m                                └ [0m[36m[1m<pr_agent.tools.pr_reviewer.PRReviewer object at 0x115f36450>[0m
+
+  File "/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/.venv/lib/python3.12/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+                 │   │       └ {'model': 'gpt-5.4-mini', 'temperature': 0.2, 'system': 'You are PR-Reviewer, a language model designed to review a Git Pull ...
+                 │   └ (<pr_agent.algo.ai_handlers.litellm_ai_handler.LiteLLMAIHandler object at 0x113ed7a40>,)
+                 └ <function LiteLLMAIHandler.chat_completion at 0x114af34c0>
+  File "/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/.venv/lib/python3.12/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+         │    │                └ <RetryCallState 4662884880: attempt #1; slept for 0.0; last result: failed (CancelledError )>
+         │    └ <function BaseRetrying.iter at 0x114766c00>
+         └ <AsyncRetrying object at 0x1149c52b0 (stop=<tenacity.stop.stop_after_attempt object at 0x114abc9b0>, wait=<tenacity.wait.wait...
+  File "/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/.venv/lib/python3.12/site-packages/tenacity/__init__.py", line 314, in iter
+    return fut.result()
+           │   └ <function Future.result at 0x107929580>
+           └ <Future at 0x114234f20 state=finished raised CancelledError>
+
+  File "[32m/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/[0m[32m[1m_base.py[0m", line [33m449[0m, in [35mresult[0m
+    [35m[1mreturn[0m [1mself[0m[35m[1m.[0m[1m__get_result[0m[1m([0m[1m)[0m
+    [36m       └ [0m[36m[1mNone[0m
+
+  File "[32m/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/[0m[32m[1m_base.py[0m", line [33m401[0m, in [35m__get_result[0m
+    [35m[1mraise[0m [1mself[0m[35m[1m.[0m[1m_exception[0m
+    [36m      └ [0m[36m[1mNone[0m
+
+  File "/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/.venv/lib/python3.12/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+                   │   │       └ {'model': 'gpt-5.4-mini', 'temperature': 0.2, 'system': 'You are PR-Reviewer, a language model designed to review a Git Pull ...
+                   │   └ (<pr_agent.algo.ai_handlers.litellm_ai_handler.LiteLLMAIHandler object at 0x113ed7a40>,)
+                   └ <function LiteLLMAIHandler.chat_completion at 0x114af3380>
+
+  File "[32m/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/algo/ai_handlers/[0m[32m[1mlitellm_ai_handler.py[0m", line [33m412[0m, in [35mchat_completion[0m
+    [1mresp[0m[1m,[0m [1mfinish_reason[0m[1m,[0m [1mresponse_obj[0m [35m[1m=[0m [35m[1mawait[0m [1mself[0m[35m[1m.[0m[1m_get_completion[0m[1m([0m[35m[1m**[0m[1mkwargs[0m[1m)[0m
+    [36m│     │                                   │    │                 └ [0m[36m[1m{'model': 'openai/gpt-5.4-mini', 'deployment_id': None, 'messages': [{'role': 'system', 'content': 'You are PR-Reviewer, a la...[0m
+    [36m│     │                                   │    └ [0m[36m[1m<function LiteLLMAIHandler._get_completion at 0x114af32e0>[0m
+    [36m│     │                                   └ [0m[36m[1m<pr_agent.algo.ai_handlers.litellm_ai_handler.LiteLLMAIHandler object at 0x113ed7a40>[0m
+    [36m│     └ [0m[36m[1mNone[0m
+    [36m└ [0m[36m[1mNone[0m
+
+  File "[32m/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/algo/ai_handlers/[0m[32m[1mlitellm_ai_handler.py[0m", line [33m450[0m, in [35m_get_completion[0m
+    [1mresponse[0m [35m[1m=[0m [35m[1mawait[0m [1macompletion[0m[1m([0m[35m[1m**[0m[1mkwargs[0m[1m)[0m
+    [36m                 │             └ [0m[36m[1m{'model': 'openai/gpt-5.4-mini', 'deployment_id': None, 'messages': [{'role': 'system', 'content': 'You are PR-Reviewer, a la...[0m
+    [36m                 └ [0m[36m[1m<function acompletion at 0x1138e8cc0>[0m
+
+  File "/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+                   │                  │       └ {'model': 'openai/gpt-5.4-mini', 'deployment_id': None, 'messages': [{'role': 'system', 'content': 'You are PR-Reviewer, a la...
+                   │                  └ ()
+                   └ <function acompletion at 0x1138e8b80>
+  File "/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/.venv/lib/python3.12/site-packages/litellm/main.py", line 605, in acompletion
+    init_response = await loop.run_in_executor(None, func_with_context)
+                          │    │                     └ functools.partial(<built-in method run of _contextvars.Context object at 0x113f43f40>, functools.partial(<function completion...
+                          │    └ <function BaseEventLoop.run_in_executor at 0x107d31800>
+                          └ <_UnixSelectorEventLoop running=True closed=False debug=False>
+
+[31m[1masyncio.exceptions.CancelledError[0m
+/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/asyncio/base_events.py:1984: RuntimeWarning: coroutine 'OpenAIChatCompletion.acompletion' was never awaited
+  handle = self._ready.popleft()
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+usage:     Usage: cli.py --pr_url=<URL on supported git hosting service> <command> [<args>].
+    For example:
+    - cli.py --pr_url=... review
+    - cli.py --pr_url=... describe
+    - cli.py --pr_url=... improve
+    - cli.py --pr_url=... ask "write me a poem about this PR"
+    - cli.py --pr_url=... reflect
+    - cli.py --issue_url=... similar_issue
+    - cli.py --pr_url/--issue_url= help_docs [<asked question>]
+
+    Supported commands:
+    - review / review_pr - Add a review that includes a summary of the PR and specific suggestions for improvement.
+
+    - ask / ask_question [question] - Ask a question about the PR.
+
+    - describe / describe_pr - Modify the PR title and description based on the PR's contents.
+
+    - improve / improve_code - Suggest improvements to the code in the PR as pull request comments ready to commit.
+    Extended mode ('improve --extended') employs several calls, and provides a more thorough feedback
+
+    - reflect - Ask the PR author questions about the PR.
+
+    - update_changelog - Update the changelog based on the PR's contents.
+
+    - add_docs
+
+    - generate_labels
+    
+    - help_docs - Ask a question, from either an issue or PR context, on a given repo (current context or a different one)
+
+    Configuration:
+    To edit any configuration parameter from 'configuration.toml', just add -config_path=<value>.
+    For example: 'python cli.py --pr_url=... review --pr_reviewer.extra_instructions="focus on the file: ..."'
+    
+
+AI based pull request analyzer
+
+positional arguments:
+  {auto_review,answer,review,review_pr,describe,describe_pr,improve,improve_code,ask,ask_question,ask_line,update_changelog,config,settings,help,similar_issue,add_docs,generate_labels,help_docs}
+                        The
+  rest
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --pr_url PR_URL       The URL of the PR to review
+  --issue_url ISSUE_URL
+                        The URL of the Issue to review
