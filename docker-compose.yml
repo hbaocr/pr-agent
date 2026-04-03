@@ -1,0 +1,26 @@
+services:
+  pr-agent:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: gitlab_webhook
+    # image: doraemon/pr-agent:gitlab_webhook
+    container_name: pr-agent-gitlab-webhook
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    # This loads the variables from the .env file directly into the container
+    env_file:
+      - .env
+    #Local docker/Dockerfile copies the folders pr_agent/ and docs/ into the Docker image, 
+    #but it purposefully ignores the root filesystem. This means your globally modified .pr_agent.toml 
+    #(which contains your extra_instructions, OpenProject triggers, and require_score_review) would be 
+    #left entirely out of the container when built
+    volumes:
+      - ./.pr_agent.toml:/app/.pr_agent.toml
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000 || wget --no-verbose --tries=1 --spider http://localhost:3000 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

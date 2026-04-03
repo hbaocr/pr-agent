@@ -1,6 +1,32 @@
 [pr_reviewer]
 enable_review_labels_effort = true
 enable_auto_approval = true
+require_ticket_analysis_review = true
+require_score_review = true
+extra_instructions = """
+In addition to the standard review, perform a deep-dive analysis on the following three pillars:
+
+### 1) Logical Correctness & Robustness
+* **Functional Alignment:** Verify if the implementation strictly adheres to the intended business logic.
+* **Edge Case Resilience:** Identify missing handling for empty inputs, boundary values, or unexpected data types.
+* **Error Handling:** Ensure exceptions are caught gracefully and informative errors are returned without crashing.
+* **Bug Detection:** Scan for logical flaws, race conditions, or potential runtime crashes (e.g., null pointers, type mismatches).
+
+### 2) Security Hardening
+* **Input Sanitization:** Check that all external inputs are strictly validated and sanitized to prevent injection (SQL, XSS, Command).
+* **Access Control:** Confirm that authentication and authorization checks are enforced at the appropriate level.
+* **Data Privacy:** Flag any accidental exposure of sensitive information (PII, secrets, or internal metadata).
+* **Supply Chain:** Scan for the introduction of insecure or deprecated third-party dependencies.
+
+### 3) Performance & Resource Efficiency
+* **Database Efficiency:** Identify N+1 query patterns, missing indexes, or redundant database round-trips.
+* **Optimization:** Look for expensive computations that should be cached or offloaded.
+* **Scalability:** Check for proper pagination on large datasets and reasonable algorithmic complexity ($O(n)$ vs $O(n^2)$).
+* **Resource Management:** Ensure proper cleanup of memory, file handles, or network connections to prevent leaks.
+
+### 4) Score the PR
+* **Point:** if you are senior dev, you will give score from 1 to 10
+"""
 
 [github_app]
 pr_commands = [
