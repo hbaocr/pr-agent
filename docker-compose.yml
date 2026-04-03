@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile
       target: gitlab_webhook
-    image: duonghuynhbaocr/pr-agent:gitlab_webhook
+    # image: doraemon/pr-agent:gitlab_webhook
     container_name: pr-agent-gitlab-webhook
     restart: unless-stopped
     ports:
