@@ -1,0 +1,20 @@
+2026-04-03 14:12:16.125 | WARNING  | pr_agent.custom_merge_loader:load:63 - Settings file not found: /Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/settings/.secrets.toml. Skipping it.
+2026-04-03 14:12:16.125 | WARNING  | pr_agent.custom_merge_loader:load:63 - Settings file not found: /Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/pr_agent/settings_prod/.secrets.toml. Skipping it.
+[32m2026-04-03 14:12:24.087[0m | [1mINFO    [0m | [36mpr_agent.git_providers.git_provider[0m:[36mget_main_pr_language[0m:[36m414[0m - [1mNo languages detected[0m
+[32m2026-04-03 14:12:30.195[0m | [1mINFO    [0m | [36mpr_agent.git_providers.gitlab_provider[0m:[36mget_diff_files[0m:[36m474[0m - [1mFiltered out files with invalid extensions: ['.gitignore', 'package-lock.json'][0m
+[32m2026-04-03 14:12:30.667[0m | [1mINFO    [0m | [36mpr_agent.tools.pr_reviewer[0m:[36mrun[0m:[36m134[0m - [1mReviewing PR: https://scm.idlogiq.com/ID/testqodoproject/-/merge_requests/6 ...[0m
+[32m2026-04-03 14:12:31.656[0m | [1mINFO    [0m | [36mpr_agent.tools.ticket_pr_compliance_check[0m:[36mextract_and_cache_pr_tickets[0m:[36m329[0m - [1mExtracted tickets and sub-issues from PR description[0m
+[32m2026-04-03 14:12:33.160[0m | [1mINFO    [0m | [36mpr_agent.algo.pr_processing[0m:[36mget_pr_diff[0m:[36m63[0m - [1mPR main language: Other[0m
+[32m2026-04-03 14:12:33.162[0m | [1mINFO    [0m | [36mpr_agent.algo.pr_processing[0m:[36mget_pr_diff[0m:[36m74[0m - [1mTokens: 2204, total tokens under limit: 32000, returning full diff.[0m
+[32m2026-04-03 14:12:33.169[0m | [1mINFO    [0m | [36mpr_agent.algo.ai_handlers.litellm_ai_handler[0m:[36mchat_completion[0m:[36m314[0m - [1mUsing reasoning_effort='medium' for GPT-5 model[0m
+/Users/duonghuynhbao/Desktop/DrKumo/pr-agent-fork/pr-agent/.venv/lib/python3.12/site-packages/pydantic/main.py:364: UserWarning: Pydantic serializer warnings:
+  Expected `Union[Choices, StreamingChoices]` but got `Choices` - serialized value may not be as expected
+  return self.__pydantic_serializer__.to_python(
+
+[1;31mProvider List: https://docs.litellm.ai/docs/providers[0m
+
+[32m2026-04-03 14:12:41.724[0m | [1mINFO    [0m | [36mpr_agent.tools.pr_reviewer[0m:[36mset_review_labels[0m:[36m413[0m - [1mReview labels are already set:
+['Review effort 2/5'][0m
+[32m2026-04-03 14:12:42.768[0m | [1mINFO    [0m | [36mpr_agent.git_providers.git_provider[0m:[36mpublish_persistent_comment_full[0m:[36m317[0m - [1mPersistent mode - updating comment https://scm.idlogiq.com/ID/testqodoproject/-/merge_requests/6#note_514071 to latest review message[0m
+sys:1: RuntimeWarning: coroutine 'Logging.async_success_handler' was never awaited
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback

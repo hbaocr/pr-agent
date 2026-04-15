@@ -2,6 +2,7 @@
 .lsp/
 .vscode/
 .env
+.env.alibaba
 .venv/
 venv/
 pr_agent/settings/.secrets.toml
