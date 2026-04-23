@@ -179,6 +179,13 @@ async def run_action():
                     else:
                         await PRAgent().handle_request(url, body)
 
+    # Wait for any background tasks to complete
+    tasks = [task for task in asyncio.all_tasks() if task is not asyncio.current_task()]
+    for task in tasks:
+        task.cancel()
+    if tasks:
+        await asyncio.gather(*tasks, return_exceptions=True)
+
 
 if __name__ == '__main__':
     asyncio.run(run_action())

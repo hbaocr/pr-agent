@@ -58,6 +58,13 @@ async def run_async():
         get_logger().exception(f"\n\n========\nHealth test failed\n========")
         raise e
 
+    # Wait for any background tasks to complete
+    tasks = [task for task in asyncio.all_tasks() if task is not asyncio.current_task()]
+    for task in tasks:
+        task.cancel()
+    if tasks:
+        await asyncio.gather(*tasks, return_exceptions=True)
+
 
 def run():
     with request_cycle_context({}):
