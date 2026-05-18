@@ -262,7 +262,8 @@ NO_SUPPORT_TEMPERATURE_MODELS = [
     "gpt-5.1-codex-mini",
     "gpt-5.2-codex",
     "gpt-5.3-codex",
-    "gpt-5-mini"
+    "gpt-5-mini",
+    "openai/cc/claude-opus-4-7",
 ]
 
 SUPPORT_REASONING_EFFORT_MODELS = [
@@ -281,5 +282,6 @@ CLAUDE_EXTENDED_THINKING_MODELS = [
 
 # Models that require streaming mode
 STREAMING_REQUIRED_MODELS = [
-    "openai/qwq-plus"
+    "openai/qwq-plus",
+    "openai/cc/claude-opus-4-7",
 ]
