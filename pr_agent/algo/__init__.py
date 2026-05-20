@@ -264,6 +264,7 @@ NO_SUPPORT_TEMPERATURE_MODELS = [
     "gpt-5.3-codex",
     "gpt-5-mini",
     "openai/cc/claude-opus-4-7",
+    "openai/cc/claude-sonnet-4-6"
 ]
 
 SUPPORT_REASONING_EFFORT_MODELS = [
